@@ -1,14 +1,18 @@
 <template>
-  <div ref="mapContainer">
-    <!-- <div ref:"mapContiner"> -->
+  <div>
+    <div ref="mapContainer">
+      <!-- <div ref:"mapContiner"> -->
+    </div>
+    <MapControl id="mapControl"> </MapControl>
   </div>
 </template>
 <script>
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import MapControl from './mapcontrol.vue'
 
 export default {
-  // components: { myHeader, myContent, myFooter },
+  components: { MapControl },
   data() {
     return {
       list: []
@@ -40,7 +44,8 @@ export default {
         zoomControl: true, //不显示放大缩小的按钮
       });
 
-      var accessToken = 'pk.eyJ1IjoieWV0YW5nemhpIiwiYSI6ImNpajFrdmJ1aDAwYnF0b2x6cDA2bndybjgifQ.g9phAioL8kT5ik4jGg6kNQ';
+      var accessToken = 'pk.eyJ1IjoieXVlY2hlbmciLCJhIjoiY2pwZGptdjJ5MzMwazN3cHhmbHg2YmZ1ZCJ9.flgccDx3QbYy46Qp-Joz5A';
+      // var accessToken = 'pk.eyJ1IjoieXVlY2hlbmciLCJhIjoiY2pwZGptdjJ5MzMwazN3cHhmbHg2YmZ1ZCJ9.flgccDx3QbYy46Qp-Joz5A'; // default public
       var style = "dark"; // emerald,light,dark
       var tileLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.' + style + '/{z}/{x}/{y}.png?access_token=' + accessToken);
 
@@ -53,12 +58,14 @@ export default {
 }
 
 </script>
-<style>
+<style lang="less">
 /*.article_list {margin: auto;}*/
+@import "../style/base/base.vars.less";
 
 #mapContainer {
   height: 100%;
   width: 100%;
 }
+
 
 </style>

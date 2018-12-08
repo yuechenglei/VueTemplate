@@ -2,7 +2,7 @@
   <div id="app">
     <i-menu mode="horizontal" theme="dark" active-name="1">
       <menu-item name="1">
-        vue tempalte
+        Flight taxiing
       </menu-item>
     </i-menu>
     <div id="content">
@@ -13,7 +13,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import myTimeline from './components/header.vue'
 import myMap from './components/map.vue'
@@ -45,12 +44,21 @@ export default {
       }
       document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px';
     },
+    async loadData() {
+      this.$Loading.start();
+      
+      // let a = d3.json("../static/d1.json", function(error, data) {})
+      // let b = d3.json("../static/d2.json", function(error, data) {})
+      // await Promise.all([a, b]); //Concurrent request
+
+      this.$Loading.finish();
+    },
 
 
   },
 
   create() {
-
+    this.loadData()
 
   }
 };

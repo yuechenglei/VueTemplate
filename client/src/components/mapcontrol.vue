@@ -25,12 +25,12 @@
         </Select>
         <!--  -->
         <div> <span>Filter</span></div>
-        <ButtonGroup size="small" id="filterBtnGroup">
+        <ButtonGroup size="small" shape="circle" id="filterBtnGroup">
           <Button><i class="icon iconfont icon-yuan" aria-hidden="true" value="filterCircle"></i></Button>
           <Button><i class="icon iconfont icon-huizhiduobianxing" aria-hidden="true" value="filterPolygon"></i></Button>
           <Button><i class="icon iconfont icon-hand" aria-hidden="true" value="filterForbid"></i></Button>
           <Button><i class="icon iconfont icon-attentionforbid" aria-hidden="true" value="filterRemove"></i></Button>
-          <Button type="ghost" icon="close"></Button>
+          <Button  icon="close"></Button>
         </ButtonGroup>
         <!--  -->
         <table width="95%">
@@ -66,14 +66,14 @@
             <span>Arr. Paths <i class="fa fa-plane" style="color: rgb(209, 71, 69);"></i></span>
           </Checkbox>
           <!-- <span class="badge arr_num_control" id="currentArrNum"></span> -->
-          <Badge size='small' count="8" class-name="badge-currentArrNum"></Badge>
+          <Badge :count="8" size='small' class-name="badge-currentArrNum"></Badge>
         </div>
         <div>
           <Checkbox size='small' v-model="single">
             <span>Dep. Paths <i class="fa fa-plane" style="color: rgb(41, 170, 227);"></i></span>
           </Checkbox>
           <!-- <span class="badge dep_num_control" id="currentDepNum"></span> -->
-          <Badge size='small' count="10" class-name="badge-currentDepNum"></Badge>
+          <Badge size='small' :count='10' class-name="badge-currentDepNum"></Badge>
         </div>
         <Checkbox size='small' v-model="single">Origin Points</Checkbox>
         <Checkbox size='small' v-model="single">History Traj</Checkbox>
@@ -84,7 +84,7 @@
         <!--  -->
         <span>Focus Location:</span>
         <br>
-        <ButtonGroup size="small" id="filterBtnGroup">
+        <ButtonGroup size="small" shape="circle" id="filterBtnGroup">
           <Button><i class="icon iconfont icon-global" value="World"></i></Button>
           <Button><i class="icon iconfont icon-china" value="China"></i></Button>
           <Button><i class="icon iconfont icon-beijing" value="Beijing"></i></Button>
@@ -107,7 +107,7 @@
   </div>
 </template>
 <script>
-import Map from '../charts/MapView'
+// import Map from '../charts/MapView'
 
 export default {
   // components: { myHeader, myContent, myFooter },
@@ -167,7 +167,54 @@ export default {
 
 </script>
 <style lang='less'>
-@import "../style/map_content.less";
+@import "../style/base/base.vars.less"; 
+
+#mapControl {
+  position: absolute;
+  width: 13.5em;
+  top: 6em;
+  right: 0.8em;
+  background: #111;
+
+  #displayControlTitle {
+    span {
+      font-size: 1em;
+      color: #2AADF9;
+      font-weight: inherit;
+      display: block;
+      background: #000;
+      padding: 3px;
+    }
+
+    text-align: center;
+    cursor:pointer;
+  }
+
+  #displayControl {
+    position: static;
+    padding: 3px;
+  }
+
+  .leftTd {
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  #resetFixpotSelection {
+    color: yellow;
+    cursor: pointer;
+  }
+
+  .badge-currentDepNum {
+    background: @colot-blue  !important;
+  }
+
+  .badge-currentArrNum {
+    background: @color-red;
+  }
+
+}
+
 
 .slide-fade-enter-active {
   transition: all .5s ease;

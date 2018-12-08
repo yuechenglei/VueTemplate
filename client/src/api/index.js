@@ -2,6 +2,7 @@
 var root = 'http://localhost:5000/'
 // 引用axios
 var axios = require('axios')
+import iView from 'iview';
 // 自定义判断元素类型JS
 function toType(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
@@ -33,6 +34,7 @@ function filterNull(o) {
 */
 
 function apiAxios(method, url, params, success, failure) {
+  iView.LoadingBar.start();
   if (params) {
     params = filterNull(params)
   }
@@ -47,15 +49,16 @@ function apiAxios(method, url, params, success, failure) {
     .then(function(res) {
       // console.log('api data: ', res.data)
       if (res.data.success === true) {
-        // console.log('success api data: ', res.data)
         if (success) {
-          console.log('success api data: ', res.data)
           success(res.data)
+          iView.LoadingBar.finish();
         }
       } else {
         if (failure) {
           failure(res.data)
+          iView.LoadingBar.error();
         } else {
+          iView.LoadingBar.error();
           window.alert('error: ' + JSON.stringify(res.data))
         }
       }
@@ -63,6 +66,7 @@ function apiAxios(method, url, params, success, failure) {
     .catch(function(err) {
       // let res = err.response
       if (err) {
+        iView.LoadingBar.error();
         window.alert('api error: ' + err)
       }
     })
